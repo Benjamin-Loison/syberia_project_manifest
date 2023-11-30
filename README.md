@@ -8,45 +8,49 @@ To initialize your local repository, use a
 command like this:
 
 ```bash
-  repo init -u https://github.com/syberia-project/manifest.git -b 13.0
+repo init -u https://github.com/syberia-project/manifest.git -b 13.0
 ```
-  
+
 Then to sync up:
 ----------------
 
 ```bash
-  repo sync -c --force-sync --no-tags --no-clone-bundle -j$(nproc --all) --optimized-fetch --prune
+repo sync -c --force-sync --no-tags --no-clone-bundle -j$(nproc --all) --optimized-fetch --prune
 ```
 
-   . build/envsetup.sh
-       lunch syberia_<device_name>-userdebug
-       mka syberia
+```bash
+. build/envsetup.sh
+lunch syberia_<device_name>-userdebug
+mka syberia
+```
 
 Submitting Patches
 ------------------
 Our ROM is open source, and patches are always welcome!
 You can send patches by using these commands:
 
-    cd <project>
-    <make edits>
-    git add -A
-    git commit -m "commit message"
-    git push ssh://<username>@gerrit.syberiaos.com:29418/syberia-project/<project> HEAD:refs/for/13.0
+```bash
+cd manifest/
+<make edits>
+git add -A
+git commit -m "commit message"
+git push ssh://<username>@gerrit.syberiaos.com:29418/syberia-project/manifest HEAD:refs/for/13.0
+```
 
-Register at <gerrit.syberiaos.com> and use the username that you registered there in the above command
+Register at <gerrit.syberiaos.com> and use the username that you registered there in the above command.
 
-Commit your patches in a single commit. Squash multiple commit using this command: git rebase -i HEAD~<# of commits>
+Commit your patches in a single commit. Squash multiple commit using this command: `git rebase -i HEAD~<# of commits>`
 
-If you are going to make extra additions, just repeat steps (Don't start a new patch), but instead of git commit -m
-use git commit --amend. Gerrit will recognize it as a new patchset.
+If you are going to make extra additions, just repeat steps (don't start a new patch), but instead of `git commit -m`
+use `git commit --amend`. Gerrit will recognize it as a new patchset.
 
-To view the status of your and others patches, visit [Syberia Project Code Review](https://gerrit.syberiaos.com)
+To view the status of your and others patches, visit [Syberia Project Code Review](https://gerrit.syberiaos.com).
 
 Maintaining Authorship
 ----------------------
 Maintaining authorship is a very important aspect of working with Open Source code. If you wish to submit a patch/fix
 from anywhere else (another ROM, project, etc.), it is imperative that you maintain the ownership of the person whose
-work you are seeking to include. Doing so will ensure that credit is given where it is deserved, and the [prinicples of open source](http://opensource.org/docs/osd)
+work you are seeking to include. Doing so will ensure that credit is given where it is deserved, and the [principles of open source](https://opensource.org/osd)
 are upheld. Your contribution to the project will still be recognized as you will forever be listed as the committer.
 
 If you manually cherry pick a patch/fix then you will need to add the original author prior to pushing to our [gerrit](https://gerrit.syberiaos.com).
